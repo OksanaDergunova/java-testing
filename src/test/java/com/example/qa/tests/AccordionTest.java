@@ -3,6 +3,7 @@ package com.example.qa.tests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.example.qa.pages.MainPage;
@@ -14,12 +15,13 @@ public class AccordionTest {
 
     @Before
     public void setUp() {
-        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().driverVersion("137.0.7151.120").setup();
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
         driver.get("https://qa-scooter.praktikum-services.ru/");
         mainPage.acceptCookies();
     }
+
 
     @Test
     public void testAccordionItems() {

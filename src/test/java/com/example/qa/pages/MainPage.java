@@ -36,3 +36,4 @@ public class MainPage {
                 .findElement(By.xpath(".//div[@class='accordion__panel']")).getText();
     }
 }
+

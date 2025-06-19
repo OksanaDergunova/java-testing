@@ -1,5 +1,6 @@
 package com.example.qa.tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +45,7 @@ public class OrderTest {
         this.fromTopButton = fromTopButton;
     }
 
+
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -54,7 +56,7 @@ public class OrderTest {
 
     @Before
     public void setUp() {
-        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().driverVersion("137.0.7151.120").setup();
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
         orderPage = new OrderPage(driver);

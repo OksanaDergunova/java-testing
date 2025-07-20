@@ -10,6 +10,9 @@ public class MainPage {
     private final By orderButtonBottom = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
     private final By cookieButton = By.id("rcc-confirm-button");
     private final By accordionItems = By.xpath(".//div[@class='accordion__item']");
+    private final By accordionPanel = By.xpath(".//div[@class='accordion__panel']");
+
+    public static final String MAIN_URL = "https://qa-scooter.praktikum-services.ru/";
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -33,7 +36,7 @@ public class MainPage {
 
     public String getAccordionItemText(int index) {
         return driver.findElements(accordionItems).get(index)
-                .findElement(By.xpath(".//div[@class='accordion__panel']")).getText();
+                .findElement(accordionPanel).getText();
     }
 }
 

@@ -1,5 +1,6 @@
 package com.example.qa.tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,18 +48,19 @@ public class OrderTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                {"Иван", "Иванов", "ул. Ленина, 1", "Черкизовская", "89991112233", "01.01.2023", "сутки", "black", "Позвонить за час", true},
-                {"Анна", "Петрова", "пр. Мира, 10", "Сокольники", "89994445566", "15.01.2023", "двое суток", "grey", "Оставить у двери", false}
+                {"Иван", "Иванов", "ул. Ленина, 1", "Черкизовская", "89991112233", "17.08.2025", "сутки", "black", "Позвонить за час", true},
+                {"Анна", "Петрова", "пр. Мира, 10", "Сокольники", "89994445566", "19.08.2025", "двое суток", "grey", "Оставить у двери", false}
         });
     }
 
     @Before
     public void setUp() {
-        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         mainPage = new MainPage(driver);
         orderPage = new OrderPage(driver);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(MainPage.MAIN_URL);
         mainPage.acceptCookies();
     }
 
@@ -74,7 +76,7 @@ public class OrderTest {
         orderPage.fillSecondPage(date, period, color, comment);
         orderPage.confirmOrder();
 
-        assertTrue("Сообщение об успешном создании заказа не отображается", orderPage.isSuccessMessageDisplayed());
+        assertTrue(orderPage.isSuccessMessageDisplayed());
     }
 
     @After

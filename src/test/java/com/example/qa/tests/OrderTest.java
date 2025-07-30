@@ -76,8 +76,7 @@ public class OrderTest {
         orderPage.fillSecondPage(date, period, color, comment);
         orderPage.confirmOrder();
 
-        assertTrue("Сообщение об успешном создании заказа не отображается",
-                orderPage.isSuccessMessageDisplayed());
+        assertTrue(orderPage.isSuccessMessageDisplayed());
     }
 
     @After
